@@ -33,8 +33,13 @@ class HHModel:
 
     def _UpdateGateTimeConstants(self, Vm, V_T):
         """Update time constants of all gates based on the given Vm"""
+        self.n.alpha = (Vm-V_T-15) * .032/ (np.exp((Vm-V_T-15)/5)-1)
+        self.m.alpha = (Vm-V_T-13) * .32/ (np.exp((Vm-V_T-13)/4)-1)
+        self.h.alpha = .128*np.exp((Vm-V_T-17)/18)
         
-        self.n.alpha = (Vm - V_T - 15*mV) * .032/np.exp()
+        self.n.beta = .5*np.exp((Vm-V_T-10*mV)/40)
+        self.m.beta = .28*np.exp((Vm-V_T-40)/5-1)
+        self.h.beta = 4/(np.exp((Vm-V_T-40)/5)+1)
         # self.n.alpha = .01 * ((10-Vm) / (np.exp((10-Vm)/10)-1))
         # self.n.beta = .125*np.exp(-Vm/80)
         # self.m.alpha = .1*((25-Vm) / (np.exp((25-Vm)/10)-1))
