@@ -82,4 +82,5 @@ FS_neuron = FS("FS", dt)
 load_param(FS_neuron, FS_PARAM)
 for i in t:
     FS_neuron.iterate(0)
+    print(FS_neuron.Vm)
 
