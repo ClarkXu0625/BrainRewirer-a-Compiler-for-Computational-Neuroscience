@@ -18,15 +18,22 @@ class HHModel:
             self.state = self.alpha / (self.alpha + self.beta)
 
 
-    def __init__(self, group_name, dt, startingVoltage=-56.2*mV):
+    def __init__(self, group_name, dt, PARAM, startingVoltage=-56.2*mV):
         self.group = group_name
         self.Vm = startingVoltage
         self.dt = dt
-        self._update_gate_time_constants()
+        self.load_param(PARAM)
         self.m, self.n, self.h = self.Gate(), self.Gate(), self.Gate()
         self.m.setInfiniteState()
         self.n.setInfiniteState()
         self.h.setInfiniteState()
+
+        # self._update_gate_time_constants()
+
+    def load_param(self, P):
+        self.model_param(P.C_M, P.V_K, P.V_Ca, P.V_Na, P.V_L, P.V_T, P.g_K_max, 
+                        P.g_M_max, P.g_Ca_max, P.g_Na_max, P.g_L, p.tau_max)
+        self.synaptic_param(P.tau_r, P.tau_d, P.V_syn, P.V_0)
 
     def synaptic_param(self, tau_r, tau_d, V_syn, V_0):
         # set up synaptic parameter
