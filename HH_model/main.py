@@ -72,13 +72,8 @@ class IB_PARAM:
     tau_d = 8 * msecond
     V_syn = 20 * mvolt
     V_0 = -20 * mvolt
-
-def load_param(neuron, P):
-    neuron.model_param(P.C_M, P.V_K, P.V_Ca, P.V_Na, P.V_L, P.V_T, P.g_K_max, 
-                       P.g_M_max, P.g_Ca_max, P.g_Na_max, P.g_L, p.tau_max)
-    neuron.synaptic_param(P.tau_r, P.tau_d, P.V_syn, P.V_0)
     
-FS_neuron = FS(dt)
+FS_neuron = FS(dt, PARAM)
 load_param(FS_neuron, FS_PARAM)
 for i in t:
     FS_neuron.iterate(0)
