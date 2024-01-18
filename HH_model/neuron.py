@@ -14,7 +14,7 @@ class FS(HHModel):
         dVdt = (1/self.C_m)*(I_inj - self.g_K_max*(n**4)*(Vm-self.V_K) 
                              - self.g_Na_max*(m**3)*h*(Vm-self.V_Na) 
                              - self.g_L*(Vm-self.V_L))
-        return Vm+dVdt*self.dt
+        self.Vm += dVdt*self.dt
     
 
 
@@ -37,7 +37,7 @@ class RSA(HHModel):
                             - self.g_M_max*self.p*(Vm-self.V_K)
                             - self.g_Na_max*(m**3)*h*(Vm-self.V_Na) 
                             - self.g_L*(Vm-self.V_L))
-        return Vm+dVdt*self.dt
+        self.Vm += dVdt*self.dt
 
     def _update_gate_states(self):
         '''Different from FS, RSA also needs to update variable p'''
@@ -76,7 +76,7 @@ class IB(HHModel):
                             - self.g_Ca_max*(q**2)*s*(Vm-self.V_Ca)
                             - self.g_Na_max*(m**3)*h*(Vm-self.V_Na) 
                             - self.g_L*(Vm-self.V_L))
-        return Vm+dVdt*self.dt
+        self.Vm +=dVdt*self.dt
     
     def _update_gate_states(self):
         '''IB neurons also needs to update variable p, calcium gating variable q and s'''
