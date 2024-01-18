@@ -3,8 +3,6 @@ import numpy as np
 from model import HHModel
 
 
-
-
 class FS(HHModel):
     def __init__(self):
         super.__init__('FS')
