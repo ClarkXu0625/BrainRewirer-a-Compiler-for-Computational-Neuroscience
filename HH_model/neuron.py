@@ -4,8 +4,8 @@ from model import HHModel
 
 
 class FS(HHModel):
-    def __init__(self):
-        super.__init__('FS')
+    def __init__(self, dt):
+        super().__init__('FS', dt)
         
 
     def _update_voltage(self, I_inj):
@@ -19,8 +19,8 @@ class FS(HHModel):
 
 
 class RSA(HHModel):
-    def __init__(self):
-        super.__init__("RSA")
+    def __init__(self, dt):
+        super().__init__("RSA", dt)
         self.p = 0
 
     def _update_p(self):
@@ -45,8 +45,8 @@ class RSA(HHModel):
         self.updata_p()
 
 class IB(HHModel):
-    def __init__(self):
-        super().__init__("IB")
+    def __init__(self, dt):
+        super().__init__("IB", dt)
         self.p = 0
         self.q, self.s = super.Gate(), super.Gate()     # two additional calcium gating variable
         self.q.setInfiniteState()

@@ -78,7 +78,7 @@ def load_param(neuron, P):
                        P.g_M_max, P.g_Ca_max, P.g_Na_max, P.g_L, p.tau_max)
     neuron.synaptic_param(P.tau_r, P.tau_d, P.V_syn, P.V_0)
     
-FS_neuron = FS("FS", dt)
+FS_neuron = FS(dt)
 load_param(FS_neuron, FS_PARAM)
 for i in t:
     FS_neuron.iterate(0)
