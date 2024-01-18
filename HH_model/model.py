@@ -32,7 +32,7 @@ class HHModel:
 
     def load_param(self, P):
         self.model_param(P.C_M, P.V_K, P.V_Ca, P.V_Na, P.V_L, P.V_T, P.g_K_max, 
-                        P.g_M_max, P.g_Ca_max, P.g_Na_max, P.g_L, p.tau_max)
+                        P.g_M_max, P.g_Ca_max, P.g_Na_max, P.g_L, P.tau_max)
         self.synaptic_param(P.tau_r, P.tau_d, P.V_syn, P.V_0)
 
     def synaptic_param(self, tau_r, tau_d, V_syn, V_0):

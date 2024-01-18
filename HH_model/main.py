@@ -73,8 +73,8 @@ class IB_PARAM:
     V_syn = 20 * mvolt
     V_0 = -20 * mvolt
     
-FS_neuron = FS(dt, PARAM)
-load_param(FS_neuron, FS_PARAM)
+FS_neuron = FS(dt, FS_PARAM)
+# load_param(FS_neuron, FS_PARAM)
 for i in t:
     FS_neuron.iterate(0)
     print(FS_neuron.Vm)
