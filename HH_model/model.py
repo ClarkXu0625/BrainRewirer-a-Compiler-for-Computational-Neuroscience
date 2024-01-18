@@ -19,7 +19,7 @@ class HHModel:
             self.state = self.alpha / (self.alpha + self.beta)
 
 
-    def __init__(self, group_name, startingVoltage):
+    def __init__(self, group_name, startingVoltage=-56.2*mV):
         self.group = group_name
         self.Vm = startingVoltage
         self._update_gate_time_constants(startingVoltage)
