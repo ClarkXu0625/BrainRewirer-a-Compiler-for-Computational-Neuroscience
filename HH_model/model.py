@@ -22,7 +22,7 @@ class HHModel:
         self.group = group_name
         self.Vm = startingVoltage
         self.dt = dt
-        self._update_gate_time_constants(startingVoltage)
+        self._update_gate_time_constants()
         self.m, self.n, self.h = self.Gate(), self.Gate(), self.Gate()
         self.m.setInfiniteState()
         self.n.setInfiniteState()
