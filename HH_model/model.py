@@ -2,7 +2,6 @@ import numpy as np
 from brian2 import *
 
 
-
 class HHModel:
     """The HHModel tracks conductances of 3 channels to calculate Vm"""
 
@@ -10,18 +9,19 @@ class HHModel:
         """The Gate object manages a channel's kinetics and open state"""
         alpha, beta, state = 0, 0, 0
 
-        def update(self):
+        def update(self, dt):
             alphaState = self.alpha * (1-self.state)
             betaState = self.beta * self.state
-            self.state += alphaState - betaState
+            self.state += (alphaState - betaState)*dt
 
         def setInfiniteState(self):
             self.state = self.alpha / (self.alpha + self.beta)
 
 
-    def __init__(self, group_name, startingVoltage=-56.2*mV):
+    def __init__(self, group_name, dt, startingVoltage=-56.2*mV):
         self.group = group_name
         self.Vm = startingVoltage
+        self.dt = dt
         self._update_gate_time_constants(startingVoltage)
         self.m, self.n, self.h = self.Gate(), self.Gate(), self.Gate()
         self.m.setInfiniteState()
@@ -53,8 +53,9 @@ class HHModel:
 
     def _update_gate_time_constants(self):
         """Update time constants of all gates based on the given Vm"""
-        V_T = self.V_T
-        Vm = self.Vm
+        # remove units for gating variable calculations
+        V_T = self.V_T / mvolt
+        Vm = self.Vm / mvolt
 
         self.n.alpha = (Vm-V_T-15) * .032/ (np.exp((Vm-V_T-15)/5)-1)
         self.m.alpha = (Vm-V_T-13) * .32/ (np.exp((Vm-V_T-13)/4)-1)
