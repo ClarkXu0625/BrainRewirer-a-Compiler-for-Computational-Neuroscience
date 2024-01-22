@@ -15,7 +15,8 @@ class HHModel:
             self.state += (alphaState - betaState)*dt
 
         def setInfiniteState(self):
-            self.state = self.alpha / (self.alpha + self.beta)
+            # self.state = self.alpha / (self.alpha + self.beta)
+            self.state = 0
 
 
     def __init__(self, group_name, dt, PARAM, startingVoltage=-56.2*mV):
@@ -68,7 +69,7 @@ class HHModel:
         self.m.alpha = (Vm-V_T-13) * .32/ (np.exp((Vm-V_T-13)/4)-1)
         self.h.alpha = .128*np.exp((Vm-V_T-17)/18)
         
-        self.n.beta = .5*np.exp((Vm-V_T-10*mV)/40)
+        self.n.beta = .5*np.exp((Vm-V_T-10)/40)
         self.m.beta = .28*np.exp((Vm-V_T-40)/5-1)
         self.h.beta = 4/(np.exp((Vm-V_T-40)/5)+1)
 
