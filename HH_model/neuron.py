@@ -82,5 +82,5 @@ class IB(HHModel):
         '''IB neurons also needs to update variable p, calcium gating variable q and s'''
         super._update_gate_states()
         self.updata_p()
-        self.q.update()
-        self.s.update()
+        self.q.update(self.dt)
+        self.s.update(self.dt)

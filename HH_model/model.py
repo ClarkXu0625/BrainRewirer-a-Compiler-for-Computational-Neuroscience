@@ -79,9 +79,9 @@ class HHModel:
 
     def _update_gate_states(self):
         """calculate new channel open states using latest Vm"""
-        self.n.update()
-        self.m.update()
-        self.h.update()
+        self.n.update(self.dt)
+        self.m.update(self.dt)
+        self.h.update(self.dt)
 
     def iterate(self, stimulus_current):
         self._update_gate_time_constants()
