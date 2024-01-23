@@ -19,7 +19,7 @@ class HHModel:
             self.state = 0
 
 
-    def __init__(self, group_name, dt, PARAM, startingVoltage=-56.2*mV):
+    def __init__(self, group_name, dt, PARAM, startingVoltage=-56.2e-3):
         self.group = group_name
         self.Vm = startingVoltage
         self.dt = dt
@@ -62,8 +62,8 @@ class HHModel:
     def _update_gate_time_constants(self):
         """Update time constants of all gates based on the given Vm"""
         # remove units for gating variable calculations
-        V_T = self.V_T / mvolt
-        Vm = self.Vm / mvolt
+        V_T = self.V_T * 10**3
+        Vm = self.Vm * 10**3
 
         self.n.alpha = (Vm-V_T-15) * .032/ (np.exp((Vm-V_T-15)/5)-1)
         self.m.alpha = (Vm-V_T-13) * .32/ (np.exp((Vm-V_T-13)/4)-1)
