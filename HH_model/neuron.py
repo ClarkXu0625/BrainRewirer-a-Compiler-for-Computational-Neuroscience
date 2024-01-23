@@ -1,6 +1,7 @@
 from brian2 import *
 import numpy as np
 from model import HHModel
+from brian2.units.allunits import *
 
 
 class FS(HHModel):
@@ -32,17 +33,20 @@ class RSA(HHModel):
 
     def _update_voltage(self, I_inj):
         Vm = self.Vm
+        
         m, n, h = self.m.state, self.n.state, self.h.state
+        
         dVdt = (1/self.C_m)*(I_inj - self.g_K_max*(n**4)*(Vm-self.V_K) 
                             - self.g_M_max*self.p*(Vm-self.V_K)
                             - self.g_Na_max*(m**3)*h*(Vm-self.V_Na) 
                             - self.g_L*(Vm-self.V_L))
+ 
         self.Vm += dVdt*self.dt
 
     def _update_gate_states(self):
         '''Different from FS, RSA also needs to update variable p'''
-        super._update_gate_states()
-        self.updata_p()
+        super()._update_gate_states()
+        self._update_p()
 
 class IB(HHModel):
     def __init__(self, dt, PARAM):
