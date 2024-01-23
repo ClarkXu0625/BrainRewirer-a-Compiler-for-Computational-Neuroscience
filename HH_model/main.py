@@ -4,7 +4,7 @@ from brian2 import *
 from brian2.units.allunits import *
 import matplotlib.pyplot as plt
 
-dt = 1e-4                               # size of a time step
+dt = 1e-4                               # size of a time step, 0.1ms
 simulation_time = 10                    # total seconds of simulation
 t = np.arange(0, simulation_time, dt)   # time vector
 voltage = np.zeros(t.shape)
@@ -13,24 +13,24 @@ voltage = np.zeros(t.shape)
 '''Data structure that contains parameters for each type of neuron in HH model'''
 class FS_PARAM:
     # model param
-    C_M = 0.5e-6 
-    V_K = -90e-3
-    V_Ca = NaN
-    V_Na = 50e-3
-    V_L = -70e-3
-    V_T = -56.2e-3
-    g_K_max = 10e-3
-    g_M_max = NaN
-    g_Ca_max = NaN
-    g_Na_max = 56e-3
-    g_L = 1.5e-5
-    tau_max = 1e-3
+    C_M = 0.5e-6        # 0.5 ufarad/cmeter2
+    V_K = -90e-3        # -90 mV
+    V_Ca = NaN          # NA
+    V_Na = 50e-3        # 50 mV
+    V_L = -70e-3        # -70 mV
+    V_T = -56.2e-3      # -56.2 mV
+    g_K_max = 10e-3     # 10 msiemens/cmeter2
+    g_M_max = NaN       # NA
+    g_Ca_max = NaN      # NA
+    g_Na_max = 56e-3    # 56 msiemens/cmeter2
+    g_L = 1.5e-5        # 1.5e-2 msiemens/cmeter2
+    tau_max = 1e-3      # 1 ms
 
     # synapse param
-    tau_r = 0.5e-3
-    tau_d = 8e-3
-    V_syn = -80e-3
-    V_0 = -20e-3
+    tau_r = 0.5e-3      # 0.5 ms
+    tau_d = 8e-3        # 8 ms
+    V_syn = -80e-3      # -80 mV
+    V_0 = -20e-3        # -20 mV
 
 class RSA_PARAM:
     # model param
