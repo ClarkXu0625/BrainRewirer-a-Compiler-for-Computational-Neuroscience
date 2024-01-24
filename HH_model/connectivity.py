@@ -26,8 +26,18 @@ n = len(neuron_list)                        # size of the network
 connectivity_matrix = np.zeros((n,n))       # connectivity matrix
 voltage_matrix = np.zeros((Nt, n))
 
+
+class PARAM_MATRIX:
+    '''store and load param for a neuron network'''
+    def __init__(self, a, b, c) -> None:
+        self.a = a
+        self.b = b
+        self.c = c
+
+
 def inj_current(V):
     pass
+    # TODO: figure out connectivity
 
 # iterate through time
 for i in range(Nt):
