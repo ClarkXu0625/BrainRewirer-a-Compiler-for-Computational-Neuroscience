@@ -76,14 +76,15 @@ class IB_PARAM:
     V_0 = -20e-3        # -20 * mvolt
     
 
-# connectivity = np.array()
-IB_neuron = IB(dt, IB_PARAM)
-# load_param(FS_neuron, FS_PARAM)
-for i in range(t.size):
-    IB_neuron.iterate(0)
-    voltage[i] = IB_neuron.Vm
+if __name__ == '__main__':
+    # connectivity = np.array()
+    IB_neuron = IB(dt, IB_PARAM)
+    # load_param(FS_neuron, FS_PARAM)
+    for i in range(t.size):
+        IB_neuron.iterate(0)
+        voltage[i] = IB_neuron.Vm
 
-voltage = voltage*1000
-#print(voltage.shape)
-plt.plot(t, voltage)
-plt.show()
+    voltage = voltage*1000
+    #print(voltage.shape)
+    plt.plot(t, voltage)
+    plt.show()
