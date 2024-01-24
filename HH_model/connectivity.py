@@ -22,3 +22,4 @@ for i in range(30):
     IB_neuron = IB(dt, IB_PARAM)
     neuron_list.append(IB_neuron)
 
+print(neuron_list.size)
