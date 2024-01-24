@@ -25,7 +25,7 @@ class RSA(HHModel):
         self.p = 0
 
     def _update_p(self):
-        Vm =self.Vm/mvolt  # remove unit
+        Vm =self.Vm*1000    # remove unit
         p_inf = 1/(np.exp((-Vm-35)/10)+1)
         tau_p = self.tau_max/(3.3*np.exp((Vm+35)/20) + np.exp((-Vm-35)/20))
         dpdt = (p_inf - self.p)/tau_p
@@ -52,20 +52,22 @@ class IB(HHModel):
     def __init__(self, dt, PARAM):
         super().__init__("IB", dt, PARAM)
         self.p = 0
-        self.q, self.s = super.Gate(), super.Gate()     # two additional calcium gating variable
+        self.q, self.s = super().Gate(), super().Gate()     # two additional calcium gating variable
         self.q.setInfiniteState()
         self.s.setInfiniteState()
 
     def _update_p(self):
-        Vm = self.Vm/mvolt  # remove unit
-        p_inf = 1/(np.exp((-Vm-35)/10)+1)
-        tau_p = self.tau_max/(3.3*np.exp((Vm+35)/20) + np.exp((-Vm-35)/20))
-        dpdt = (p_inf - self.p)/tau_p
-        self.p += dpdt*self.dt
+        '''same as _update_p function in RSA neuron'''
+        RSA._update_p(self)
+        # Vm = self.Vm*1000  # remove unit
+        # p_inf = 1/(np.exp((-Vm-35)/10)+1)
+        # tau_p = self.tau_max/(3.3*np.exp((Vm+35)/20) + np.exp((-Vm-35)/20))
+        # dpdt = (p_inf - self.p)/tau_p
+        # self.p += dpdt*self.dt
 
     def _update_gate_time_constants(self):
         '''IB neurons have two more gating variables: q and s'''
-        super._update_gate_time_constants()
+        super()._update_gate_time_constants()
         Vm = self.Vm
         self.q.alpha = .0055*(-27-Vm)/(np.exp((-27-Vm)/3.8)-1)
         self.s.alpha = .000457*np.exp((-13-Vm)/50)
@@ -84,7 +86,7 @@ class IB(HHModel):
     
     def _update_gate_states(self):
         '''IB neurons also needs to update variable p, calcium gating variable q and s'''
-        super._update_gate_states()
-        self.updata_p()
+        super()._update_gate_states()
+        self._update_p()
         self.q.update(self.dt)
         self.s.update(self.dt)
