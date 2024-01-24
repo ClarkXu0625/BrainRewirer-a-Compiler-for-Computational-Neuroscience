@@ -22,24 +22,35 @@ for i in range(30):
     IB_neuron = IB(dt, IB_PARAM)
     neuron_list.append(IB_neuron)
 
-n = len(neuron_list)                        # size of the network
-connectivity_matrix = np.zeros((n,n))       # connectivity matrix
-voltage_matrix = np.zeros((Nt, n))
-
-
 class PARAM_MATRIX:
     '''store and load param for a neuron network'''
+
     def __init__(self, a, b, c) -> None:
         self.a = a
         self.b = b
         self.c = c
+        n = a+b+c
+
+NETWORK_PARAM = PARAM_MATRIX(30, 90, 30)
+N = len(NETWORK_PARAM.n)                        # size of the network
+
+
+
+A_el = np.zeros((N,N))          # adjacency matrix
+D = np.zeros((N,N))             # diagonal degree matrix
+L = np.zeros((N,N))             # Laplacian matrix, or connectivity matrix
+voltage_matrix = np.zeros((Nt, N))
+
+
+
+        
 
 
 def inj_current(V):
     pass
     # TODO: figure out connectivity
 
-# iterate through time
+'''psudocode for iterate over time time: '''
 for i in range(Nt):
     current = inj_current(voltage_matrix[i,:])
     for j in range(n):
