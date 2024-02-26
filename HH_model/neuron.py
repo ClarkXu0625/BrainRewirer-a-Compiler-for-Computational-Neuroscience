@@ -15,8 +15,7 @@ class FS(HHModel):
         dVdt = (1/self.C_m)*(I_inj - self.g_K_max*(n**4)*(Vm-self.V_K) 
                              - self.g_Na_max*(m**3)*h*(Vm-self.V_Na) 
                              - self.g_L*(Vm-self.V_L))
-        print(dVdt*self.dt)
-        # print(self.dt)
+        
         self.Vm += dVdt*self.dt*second
     
 

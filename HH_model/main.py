@@ -95,7 +95,7 @@ if __name__ == '__main__':
     for i in range(Nt):
         FS_neuron.iterate(0)
         voltage[i] = FS_neuron.Vm
-        print(str(i)+": "+str(FS_neuron.Vm))
+        # print(str(i)+": "+str(FS_neuron.Vm))
 
     voltage = voltage*1000
     #print(voltage.shape)
