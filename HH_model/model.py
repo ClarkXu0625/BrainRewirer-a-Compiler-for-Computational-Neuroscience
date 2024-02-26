@@ -28,7 +28,7 @@ class HHModel:
         self.m.setInfiniteState()
         self.n.setInfiniteState()
         self.h.setInfiniteState()
-
+        self.r = 1
         # self._update_gate_time_constants()
 
     def load_param(self, P):
@@ -90,4 +90,6 @@ class HHModel:
         self._update_voltage(stimulus_current)
         self._update_gate_states()
     
+    def receptor_fraction(self):
+        rdt = (1/self.tau_r + 1/self.tau_d)*(1-self.r)
     #def _UpdateGateTimeConstant_m()
