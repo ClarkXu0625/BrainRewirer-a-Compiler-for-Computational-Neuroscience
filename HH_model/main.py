@@ -35,54 +35,54 @@ class FS_PARAM:
 
 class RSA_PARAM:
     # model param
-    C_M = 1e-6          # 1 * ufarad/cmeter2
-    V_K = -90e-3        # -90 * mV
+    C_M = 1 * ufarad/cmeter2
+    V_K = -90 * mV
     V_Ca = NaN          # NA
-    V_Na = 56e-3        # 56 mV
-    V_L = -70.3e-3      # -70.3 mV
-    V_T = -56.2e-3      # -56.2 mV
-    g_K_max = 6e-3      # 6 msiemens/cmeter2
-    g_M_max = 0.075e-3  # 0.075 msiemens/cmeter2
+    V_Na = 56 * mV
+    V_L = -70.3 * mV
+    V_T = -56.2 * mV
+    g_K_max = 6 * msiemens/cmeter2
+    g_M_max = 0.075 * msiemens/cmeter2
     g_Ca_max = NaN      # NA
-    g_Na_max = 56e-3    # 56 msiemens/cmeter2
-    g_L = 2.05e-5       # 2.05e-2 * msiemens/cmeter2
-    tau_max = 608e-3    # 608 * msecond
+    g_Na_max = 56 * msiemens/cmeter2
+    g_L = 2.05e-2 * msiemens/cmeter2
+    tau_max = 608 * msecond
 
     # synapse param
-    tau_r = 0.5e-3      # 0.5 * msecond
-    tau_d = 8e-3        # 8 * msecond
-    V_syn = 20e-3       # 20 * mvolt
-    V_0 = -20e-3        # -20 * mvolt
+    tau_r = 0.5 * msecond
+    tau_d = 8 * msecond
+    V_syn = 20 * mvolt
+    V_0 = -20 * mvolt
 
 
 class IB_PARAM:
     # model param
-    C_M = 1e-6          # 1 * ufarad/cmeter2
-    V_K = -90e-3        # -90 * mV
-    V_Ca = 120e-3       # 120 *mV
-    V_Na = 50e-3        # 50 * mV
-    V_L = -70e-3        # -70 * mV
-    V_T = -56.2e-3      # -56.2 * mV
-    g_K_max = 5e-3      # 5 * msiemens/cmeter2
-    g_M_max = 3e-5      # 0.03 * msiemens/cmeter2
-    g_Ca_max = 2e-4     # 0.2 * msiemens/cmeter2
-    g_Na_max = 50e-3    # 50 * msiemens/cmeter2
-    g_L = 1e-5          # 1e-2 * msiemens/cmeter2
-    tau_max = 608e-3    # 608 * msecond
+    C_M = 1 * ufarad/cmeter2
+    V_K = -90 * mV
+    V_Ca = 120 *mV
+    V_Na = 50 * mV
+    V_L = -70 * mV
+    V_T = -56.2 * mV
+    g_K_max = 5 * msiemens/cmeter2
+    g_M_max = 0.03 * msiemens/cmeter2
+    g_Ca_max = 0.2 * msiemens/cmeter2
+    g_Na_max = 50 * msiemens/cmeter2
+    g_L = 1e-2 * msiemens/cmeter2
+    tau_max = 608 * msecond
 
     # synapse param
-    tau_r = 0.5e-3      # 0.5 * msecond
-    tau_d = 8e-3        # 8 * msecond
-    V_syn = 20e-3       # 20 * mvolt
-    V_0 = -20e-3        # -20 * mvolt
+    tau_r = 0.5 * msecond
+    tau_d = 8 * msecond
+    V_syn = 20 * mvolt
+    V_0 = -20 * mvolt
 
-
-    
 
 if __name__ == '__main__':
     # connectivity = np.array()
     # IB_neuron = IB(dt, IB_PARAM)
     FS_neuron = FS(dt, FS_PARAM)
+    RSA_neuron = RSA(dt, RSA_PARAM)
+    IB_neuron = IB(dt, IB_PARAM)
 
     #########
     # '''model injection current'''
@@ -93,7 +93,8 @@ if __name__ == '__main__':
     ##########
 
     for i in range(Nt):
-        FS_neuron.iterate(0)
+        FS_neuron.iterate(0*uA/cm2)
+        # RSA_neuron.ierate(0)
         voltage[i] = FS_neuron.Vm
         # print(str(i)+": "+str(FS_neuron.Vm))
 
