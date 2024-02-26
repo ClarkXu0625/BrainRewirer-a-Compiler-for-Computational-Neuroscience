@@ -62,16 +62,17 @@ class HHModel:
     def _update_gate_time_constants(self):
         """Update time constants of all gates based on the given Vm"""
         # remove units for gating variable calculations
-        V_T = self.V_T * 10**3
-        Vm = self.Vm * 10**3
+        V_T = self.V_T      # * 10**3
+        Vm = self.Vm        # * 10**3
+        diff = (self.Vm - self.V_T)/mV
 
-        self.n.alpha = (Vm-V_T-15) * .032/ (np.exp((Vm-V_T-15)/5)-1)
-        self.m.alpha = (Vm-V_T-13) * .32/ (np.exp((Vm-V_T-13)/4)-1)
-        self.h.alpha = .128*np.exp((Vm-V_T-17)/18)
+        self.n.alpha = (diff-15) * .032/ (np.exp((diff-15)/5)-1)
+        self.m.alpha = (diff-13) * .32/ (np.exp((diff-13)/4)-1)
+        self.h.alpha = .128*np.exp((diff-17)/18)
         
-        self.n.beta = .5*np.exp((Vm-V_T-10)/40)
-        self.m.beta = .28*np.exp((Vm-V_T-40)/5-1)
-        self.h.beta = 4/(np.exp((Vm-V_T-40)/5)+1)
+        self.n.beta = .5*np.exp((diff-10)/40)
+        self.m.beta = .28*np.exp((diff-40)/5-1)
+        self.h.beta = 4/(np.exp((diff-40)/5)+1)
 
     def _update_voltage(self, stimulusCurrent):
         """calculate channel currents using the latest gate time constants"""

@@ -25,7 +25,7 @@ class RSA(HHModel):
         self.p = 0
 
     def _update_p(self):
-        Vm =self.Vm*1000    # remove unit
+        Vm =self.Vm / mV     # remove unit
         p_inf = 1/(np.exp((-Vm-35)/10)+1)
         tau_p = self.tau_max/(3.3*np.exp((Vm+35)/20) + np.exp((-Vm-35)/20))
         dpdt = (p_inf - self.p)/tau_p

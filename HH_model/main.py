@@ -85,11 +85,11 @@ if __name__ == '__main__':
     FS_neuron = FS(dt, FS_PARAM)
 
     #########
-    '''model injection current'''
-    a = 1
-    b = 10
-    d = 5
-    l = int(Nt/d)
+    # '''model injection current'''
+    # a = 1
+    # b = 10
+    # d = 5
+    # l = int(Nt/d)
     ##########
 
     for i in range(Nt):
