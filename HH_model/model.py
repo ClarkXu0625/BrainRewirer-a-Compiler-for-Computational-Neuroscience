@@ -18,8 +18,8 @@ class HHModel:
             # self.state = self.alpha / (self.alpha + self.beta)
             self.state = 0
 
-
-    def __init__(self, group_name, dt, PARAM, startingVoltage=-56.2e-3):
+    ##### unit here
+    def __init__(self, group_name, dt, PARAM, startingVoltage=-56.2*mV):
         self.group = group_name
         self.Vm = startingVoltage
         self.dt = dt
