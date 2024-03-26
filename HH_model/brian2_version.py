@@ -35,3 +35,9 @@ dn/dt = 0.032*(mV**-1)*(15.*mV-v+VT)/
 dh/dt = 0.128*exp((17.*mV-v+VT)/(18.*mV))/ms*(1.-h)-4./(1+exp((40.*mV-v+VT)/(5.*mV)))/ms*h : 1
 I : amp
 '''
+
+
+tau = 10*ms
+eqs = '''
+dv/dt = (1-v)/tau : 1
+'''
